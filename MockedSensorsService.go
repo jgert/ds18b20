@@ -3,23 +3,15 @@ package ds18b20
 import "math/rand"
 
 type MockedSensorsService struct {
-	sensors []Sensor
+	sensors []string
 }
 
-func (m MockedSensorsService) Sensors() ([]Sensor, error) {
-	return []Sensor{
-		MockedSensor{
-			name: "Sensor01",
-		},
-		MockedSensor{
-			name: "Sensor02",
-		},
-		MockedSensor{
-			name: "Sensor03",
-		},
-		MockedSensor{
-			name: "Sensor04",
-		},
+func (m MockedSensorsService) Sensors() ([]string, error) {
+	return []string{
+		"mocked-id-01",
+		"mocked-id-02",
+		"mocked-id-03",
+		"mocked-id-04",
 	}, nil
 }
 

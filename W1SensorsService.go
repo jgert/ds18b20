@@ -9,24 +9,19 @@ import (
 type W1SensorsService struct {
 }
 
-func (w W1SensorsService) Sensors() ([]Sensor, error) {
+func (w W1SensorsService) Sensors() ([]string, error) {
 
 	data, err := ioutil.ReadFile("/sys/bus/w1/devices/w1_bus_master1/w1_master_slaves")
 	if err != nil {
-		return []Sensor{}, err
+		return []string{}, err
 	}
 
-	names := strings.Split(string(data), "\n")
-	if len(names) > 0 {
-		names = names[:len(names)-1]
+	ids := strings.Split(string(data), "\n")
+	if len(ids) > 0 {
+		ids = ids[:len(ids)-1]
 	}
 
-	sensors := make([]Sensor, len(names))
-	for i, v := range names {
-		sensors[i] = W1Sensor{id: v}
-	}
-
-	return sensors, nil
+	return ids, nil
 }
 
 func (w W1SensorsService) ReadTemperature(id string) (float64, error) {
