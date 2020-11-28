@@ -1,1 +1,1 @@
-module ds18b20
+module github.com/jgert/ds18b20
