@@ -31,6 +31,7 @@ func (w W1SensorsService) ReadTemperature(id string) (float64, error) {
 	}
 
 	raw := string(data)
+	raw = strings.ReplaceAll(raw, "\n", "")
 
 	c, err := strconv.ParseFloat(raw, 64)
 	if err != nil {
